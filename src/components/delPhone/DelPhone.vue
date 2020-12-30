@@ -12,6 +12,7 @@
                         <del-app-maps></del-app-maps>
                         <del-app-music></del-app-music>
                         <del-app-reticle></del-app-reticle>
+                        <!-- Your custom app goes here -->
                     </DelPhoneHomePage>
                 </div>
             </div>
@@ -94,6 +95,7 @@ import DelAppMail from '../delPhone/apps/DelAppMail.vue';
 import DelAppMaps from '../delPhone/apps/DelAppMaps.vue';
 import DelAppMusic from '../delPhone/apps/DelAppMusic.vue';
 import DelAppReticle from '../delPhone/apps/DelAppReticle.vue';
+//Your app import goes here
 
 export default {
     name: 'del-phone',
@@ -102,7 +104,8 @@ export default {
         DelAppMail,
         DelAppMaps,
         DelAppMusic,
-        DelAppReticle
+        DelAppReticle,
+        //Your component goes right here
     },
     data () {
         return {

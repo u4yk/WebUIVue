@@ -104,4 +104,44 @@ While the phone does work, the apps still needs work.  That said, the underlying
         </del-phone-app>
     </template>
 
-You can, then, build off the template to create complex apps.  Please note that everything that runs inside the app will be contained within the **app-main** slot while your app icon (shown on the home screen) will be the contents inside the **app-icon** slot.  The icon area is 50px X 50px window; so, make sure your icon will display within that area.
+You can, then, build off the template to create complex apps.  Please note that everything that runs inside the app will be contained within the **app-main** slot while your app icon (shown on the home screen) will be the contents inside the **app-icon** slot.  The icon area is 50px X 50px window; so, make sure your icon will display within that area. One other thing: it's imperative that you make sure your app names are unique; so, ensure that the appname you pass to DelPhoneApp is unique.
+
+### Installing apps
+Once you have your app created, you can install it by including in your **DelPhone.vue** component located in src/components/delPhone/.  
+
+First, import your component into DelPhone.vue inside the script tag like so:
+
+    <script>
+    import DelPhoneHomePage from './DelPhoneHomePage.vue';
+    import DelAppMail from '../delPhone/apps/DelAppMail.vue';
+    import DelAppMaps from '../delPhone/apps/DelAppMaps.vue';
+    import DelAppMusic from '../delPhone/apps/DelAppMusic.vue';
+    import DelAppReticle from '../delPhone/apps/DelAppReticle.vue';
+    //Your app import goes here
+    import MyApp from '../delPhone/apps/MyApp.vue';
+
+Next, include the component right below the previous step like this:
+
+    export default {
+    name: 'del-phone',
+    components: {
+        DelPhoneHomePage,
+        DelAppMail,
+        DelAppMaps,
+        DelAppMusic,
+        DelAppReticle,
+        //Your component goes right here
+        MyApp
+
+Finally, add the component tag to the template inside the DelPhoneHomePage component.  It should look something like this:
+
+    <DelPhoneHomePage v-if="getSlot(0)">
+        <del-app-mail></del-app-mail>
+        <del-app-maps></del-app-maps>
+        <del-app-music></del-app-music>
+        <del-app-reticle></del-app-reticle>
+        <!-- Your custom app goes here -->
+        <MyApp></MyApp>
+    </DelPhoneHomePage>
+
+Now, your app is installed.
