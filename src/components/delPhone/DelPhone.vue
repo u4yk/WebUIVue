@@ -14,7 +14,6 @@
                         <del-app-reticle></del-app-reticle>
                     </DelPhoneHomePage>
                 </div>
-                <!-- <div class="del-phone-app" id="del-phone-app" v-show="isAppOpen"></div> -->
             </div>
             <button class="del-phone-button" @click="goHome"></button>
         </div>

@@ -8,7 +8,7 @@
             <LifeMeter></LifeMeter>
             <Overlay v-if="isDead">You're dead!</Overlay>
         </div>
-        <!-- <Dialogue v-if="isDialogue"></Dialogue> -->
+        <Dialogue v-if="isDialogue"></Dialogue>
         <Inventory v-if="isInventory"></Inventory>
         <DelPhone v-if="isDelPhoneOpen"></DelPhone>
     </div>
@@ -17,7 +17,7 @@
 
 </style>
 <script>
-// import Dialogue from './Dialogue.vue';
+import Dialogue from './Dialogue.vue';
 import Inventory from './Inventory.vue';
 import LifeMeter from './LifeMeter.vue';
 import Overlay from './Overlay.vue';
@@ -31,7 +31,7 @@ import DelPhone from '../delPhone/DelPhone.vue';
 export default {
     name: 'hud',
     components: {
-        // Dialogue,
+        Dialogue,
         Inventory,
         LifeMeter,
         Overlay,
