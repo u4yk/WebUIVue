@@ -1,5 +1,5 @@
 # WebUIVue
-UI framework for Unreal Engine 4 projects that uses Vue.js to work with [Tracer Interactive's](https://tracerinteractive.com) [Web UI plugin] (https://github.com/tracerinteractive/UnrealEngine).  It's pretty bare-bones at the moment, but there's enough functionality to get you up and going.
+UI framework for Unreal Engine 4 projects that uses Vue.js to work with [Tracer Interactive's](https://tracerinteractive.com) Web UI [plugin] (https://github.com/tracerinteractive/UnrealEngine).  It's pretty bare-bones at the moment, but there's enough functionality to get you up and going.
 
 ## Architecture
 Based on the Web UI plugin's architecture, the Web Interface widget has a method named ***call()*** that allows you to pass JSON data down to the browser, with the Function string parameter passed being the name of the method defined inside the global *ue.interface* object.  When data needs to be passed back to Unreal, there's a global *ue4()* function that can be called by JavaScript to do so.  I've simplified things a bit with the *toUE4()* and *toUEInterface()* wrapper functions that take in an object of functions and converts them to methods that either update the VueX store (with *toUEInterface()*) or updates Unreal (with *toUE4()*).
