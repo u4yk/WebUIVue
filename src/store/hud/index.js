@@ -7,7 +7,16 @@ const state = () => ({
   displayState: 'main',
   reticleStyle: 'crosshair',
   isReticleOn: false,
-  isReticleFired: false
+  isReticleFired: false,
+  cameraPosition: {
+    x: 0,
+    y: 0,
+    z: 0
+  },
+  inventory: {
+    player: [],
+    other: []
+  }
 })
 
 export default {

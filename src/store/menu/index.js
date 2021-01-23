@@ -23,8 +23,19 @@ const state = () => ({
     aim: 'Right Mouse'
   },
   videoResolution: {
-    x: 1920,
-    y: 1080
+    'screen-resolution':{
+      x: 1920,
+      y: 1080
+    },
+    'anti-aliasing': 0,
+    foliage: 0,
+    'post-processing': 0,
+    shading: 0,
+    shadows: 0,
+    texture: 0,
+    distance: 0,
+    effects: 0,
+    scale: 0
   },
   resolutionList: [
     {x: 640, y: 480},

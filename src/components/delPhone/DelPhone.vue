@@ -12,6 +12,10 @@
                         <del-app-maps></del-app-maps>
                         <del-app-music></del-app-music>
                         <del-app-reticle></del-app-reticle>
+                        <del-app-video-settings></del-app-video-settings>
+                        <del-app-camera-setting></del-app-camera-setting>
+                        <del-app-inventory></del-app-inventory>
+                        <del-app-factions></del-app-factions>
                         <!-- Your custom app goes here -->
                     </DelPhoneHomePage>
                 </div>
@@ -56,12 +60,12 @@
     height: 6%;
     z-index: 3;
     position: absolute;
-    bottom: 3%;
+    bottom: 4%;
     left: 20%;
     border-radius: 20px;
     background: rgba(133,133,133,1);
     outline: none;
-    box-shadow: inset -9px -8px 5px -6px black;
+    box-shadow: inset -5px -5px 16px 1px black;
     border: 1px solid rgba(133,133,133,1);
 
     &:active {
@@ -95,6 +99,10 @@ import DelAppMail from '../delPhone/apps/DelAppMail.vue';
 import DelAppMaps from '../delPhone/apps/DelAppMaps.vue';
 import DelAppMusic from '../delPhone/apps/DelAppMusic.vue';
 import DelAppReticle from '../delPhone/apps/DelAppReticle.vue';
+import DelAppVideoSettings from '../delPhone/apps/DelAppVideoSettings.vue';
+import DelAppCameraSetting from '../delPhone/apps/DelAppCameraSetting.vue';
+import DelAppInventory from '../delPhone/apps/DelAppInventory.vue';
+import DelAppFactions from '../delPhone/apps/DelAppFactions.vue';
 //Your app import goes here
 
 export default {
@@ -105,6 +113,10 @@ export default {
         DelAppMaps,
         DelAppMusic,
         DelAppReticle,
+        DelAppVideoSettings,
+        DelAppCameraSetting,
+        DelAppInventory,
+        DelAppFactions,
         //Your component goes right here
     },
     data () {
@@ -119,7 +131,6 @@ export default {
             const pages = [];
         },
         getPageCount () {
-            // return this.$children.length;
             return Object.keys(this.$slots).length;
         },
         isAppOpen () {

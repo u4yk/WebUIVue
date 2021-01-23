@@ -17,4 +17,21 @@ export default {
     setDisplayState: (state, val) => {
         state.displayState = val;
     },
+    updateCameraPosition: (state, val) => {
+        state.cameraPosition = val;
+    },
+    updateInventory: (state, val) => {
+        state.inventory = val;
+    },
+    showRemoteInventory: (state, val) => {
+        state.inventory = val;
+        state.displayState = 'inventory';
+    },
+    showDialogue: (state, val) => {
+        state.dialogue = val;
+        state.displayState = 'dialogue';
+    },
+    setDialogue: (state, val) => {
+        state.dialogue = val;
+    }
 }

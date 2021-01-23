@@ -20,14 +20,15 @@ $ht: 5vh;
     background: #fff;
     border: 2px solid #000;
     border-radius: 20px;
-    padding: 10px 10px;
+    padding: 5px 5px;
     box-shadow: inset 0vh 0vw 1.25vh 0.5vh rgba(0, 0, 0, 0.8);
     background: radial-gradient(circle at 50%, #333, #333 50%, #eee 75%, #333 75%);
 }
 
+$cht: calc($ht - 10px);
 .life-meter-container {
-    width: $maxWidth;
-    height: $ht;
+    width: calc(80vw - 10px);
+    height: calc(5vh - 10px);
     position: relative;
     float: left;
     border-radius: 15px;
@@ -39,7 +40,7 @@ $ht: 5vh;
 }
 
 .life-meter-bar {
-    height: 100%;
+    height: calc(100% + 4px);
     overflow: hidden;
     position: absolute;
     top: -2px;

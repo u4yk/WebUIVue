@@ -16,11 +16,11 @@
     user-select: none;
 }
 .del-phone-app-icon { 
-    width: 70px;
-    height: 80px;
+    width: 75px;
+    height: 70px;
     position: relative;
     float: left;
-    margin: 0 10px 10px 0;
+    margin: 0 10px 20px 0;
     cursor: pointer;
 }
 .del-phone-app-icon-icon {
@@ -30,17 +30,20 @@
     border-radius: 10px;
     position: relative;
     top: 0;
-    left: 10px;
+    left: 12.5px;
     overflow: hidden;
     border-right: 1px solid #000;
     border-bottom: 1px solid #000;
 }
 .del-phone-app-icon-label {
-    width: 70px;
+    width: 100%;
     position: absolute;
-    height: 1em;
+    height: 1.25em;
     bottom: 0;
     left: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
 }
 
 .del-phone-app-main {
@@ -69,7 +72,7 @@ export default {
           this.$store.commit('del/setCurrentApp', this.appname);
       },
       uc (name) {
-          return name.charAt(0).toUpperCase() + name.slice(1);
+          return (name.charAt(0).toUpperCase() + name.slice(1)).split('-').join(' ');
       }
   }
 };

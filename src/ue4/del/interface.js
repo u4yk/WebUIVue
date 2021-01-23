@@ -3,5 +3,5 @@ import store from '../../store';
 
 export default toUEInterface({
     setCurrentApp: () => {},
-    setIsOpen: (v) => {store.commit('hud/setDisplayState', v ? 'del' : 'main'); console.log(store)},
+    setIsOpen: (v) => {store.commit('hud/setDisplayState', v ? 'del' : 'main');},
 }, 'del');
