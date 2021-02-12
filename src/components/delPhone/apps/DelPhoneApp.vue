@@ -30,10 +30,10 @@
     border-radius: 10px;
     position: relative;
     top: 0;
-    left: 12.5px;
+    left: 12px;
     overflow: hidden;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border: 2px solid #fff;
+    box-shadow: 3px 2px 1px 1px rgba(0,0,0,1);
 }
 .del-phone-app-icon-label {
     width: 100%;
@@ -44,6 +44,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
+    color: #fff;
 }
 
 .del-phone-app-main {

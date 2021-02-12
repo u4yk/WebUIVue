@@ -79,14 +79,14 @@ export default {
         width: 100%;
         height: 100%;
         position: absolute;
-        line-height: 40px;
-        font-size: 32px;
+        line-height: 42px;
         color: #fff;
         background-image: linear-gradient(to top, #09140a 0%, #860516 100%);
         text-shadow: -1px -2px rgba(0,0,0,0.7);
 
         .md-icon::before {
             color: #f18484;
+            font-size: 24px;
         }
     }
     .left {

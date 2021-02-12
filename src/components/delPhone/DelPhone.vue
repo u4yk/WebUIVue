@@ -16,6 +16,7 @@
                         <del-app-camera-setting></del-app-camera-setting>
                         <del-app-inventory></del-app-inventory>
                         <del-app-factions></del-app-factions>
+                        <del-app-quests></del-app-quests>
                         <!-- Your custom app goes here -->
                     </DelPhoneHomePage>
                 </div>
@@ -56,13 +57,13 @@
 }
 
 .del-phone-button {
-    width: 60%;
-    height: 6%;
+    width: 7vw;
+    height: 7vh;
     z-index: 3;
     position: absolute;
-    bottom: 4%;
-    left: 20%;
-    border-radius: 20px;
+    bottom: 2vh;
+    left: calc(50% - 3.5vw);
+    border-radius: 100px;
     background: rgba(133,133,133,1);
     outline: none;
     box-shadow: inset -5px -5px 16px 1px black;
@@ -103,6 +104,7 @@ import DelAppVideoSettings from '../delPhone/apps/DelAppVideoSettings.vue';
 import DelAppCameraSetting from '../delPhone/apps/DelAppCameraSetting.vue';
 import DelAppInventory from '../delPhone/apps/DelAppInventory.vue';
 import DelAppFactions from '../delPhone/apps/DelAppFactions.vue';
+import DelAppQuests from '../delPhone/apps/DelAppQuests.vue';
 //Your app import goes here
 
 export default {
@@ -117,6 +119,7 @@ export default {
         DelAppCameraSetting,
         DelAppInventory,
         DelAppFactions,
+        DelAppQuests,
         //Your component goes right here
     },
     data () {

@@ -18,14 +18,14 @@ export default {
         width: 100%;
         height: 100%;
         position: absolute;
-        line-height: 48px;
-        font-size: 32px;
+        line-height: 42px;
         color: #fff;
         background-image: linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%);
         text-shadow: -1px -2px rgba(0,0,0,0.7);
 
         .md-icon::before {
             color: #ebff7a;
+            font-size: 22px;
         }
     }
 </style>

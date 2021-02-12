@@ -199,14 +199,14 @@ export default {
         width: 100%;
         height: 100%;
         position: absolute;
-        line-height: 40px;
-        font-size: 32px;
+        line-height: 42px;
         color: #fff;
         background-image: linear-gradient(to top, #342a4d 0%, #fce9ac 100%);
         text-shadow: -2px -2px rgba(0,0,0,0.7);
 
         .md-icon::before {
             color: #60c9fa;
+            font-size: 22px;
         }
     }
     .settings-input {

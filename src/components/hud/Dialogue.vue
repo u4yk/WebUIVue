@@ -12,7 +12,7 @@
 <style lang="scss" scoped>
 .dialogue {
     position: fixed;
-    background: rgba(255,255,255,0.25);
+    background: rgba(53, 53, 53, 0.125);
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -24,25 +24,26 @@
     position: absolute;
     bottom: 5vh;
     height: 35vh;
-    width: 80vw;
-    left: 10vw;
+    width: 60vw;
+    left: 20vw;
     border-radius: 15px;
     border: 5px solid #000;
     overflow: hidden;
     padding: 0;
+    cursor: pointer;
 
     .md-title {
-        // position: relative;
         background-clip: border-box;
-        // top: -1.5rem;
-        // left: -1.5rem;
         margin: 0;
         width: 100%;
         text-align: left;
         background: #2088dd;
         color: #bbefff;
-        padding: 0.25rem 1rem;
+        padding: 0 3rem;
         float: left;
+        font-size: 2.5rem;
+        height: 3.5rem;
+        line-height: 3.5rem;
         font-weight: bolder;
     }
 

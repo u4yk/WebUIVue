@@ -1,16 +1,16 @@
 <template>
-    <del-phone-app appname="factions">
+    <del-phone-app appname="quests">
         <template v-slot:app-icon>
-            <div class="icon"><md-icon class="fa fa-users"></md-icon></div>
+            <div class="icon"><md-icon class="fa fa-map-marker-alt"></md-icon></div>
         </template>
         <template v-slot:app-main>
-            <div class="del-phone-app-factions"></div>
+            <div class="del-phone-app-quests"></div>
         </template>
     </del-phone-app>
 </template>
 <script>
 export default {
-    name: 'del-app-factions',
+    name: 'del-app-quests',
 }
 </script>
 <style lang="scss" scoped>
@@ -18,14 +18,14 @@ export default {
         width: 100%;
         height: 100%;
         position: absolute;
-        line-height: 36px;
+        line-height: 44px;
         color: #fff;
-        background-image: linear-gradient(45deg, #d88200 0%, #052d5a 50%, #800e0e 75%, #1f000a 100%);
+        background-image: linear-gradient(-140deg, #0c047a 0%, #ffb45e 70%, rgb(110, 63, 1) 71%, rgb(94, 0, 0) 100%);
         text-shadow: -1px -2px rgba(0,0,0,0.7);
 
         .md-icon::before {
             color: #ffffff;
-            font-size: 20px;
+            font-size: 22px;
         }
     }
 </style>
