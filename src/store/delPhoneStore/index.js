@@ -6,6 +6,8 @@ const state = () => ({
   currentApp: '',
   isOpen: false,
   appList: [],
+  recipes: [],
+  isCrafting: false,
 })
 
 export default {

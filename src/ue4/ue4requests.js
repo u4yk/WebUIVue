@@ -8,8 +8,6 @@ export default toUE4({
     loadGame: () => {},
     pauseGame: () => {},
     resumeGame: () => {},
-    repairItem: () => {},
-    equipItem: () => {},
     getDialogueOption: (val) => {
         if (val.next === '') {
             store.commit('hud/setDisplayState', 'main');

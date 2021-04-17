@@ -7,5 +7,11 @@ export default {
     },
     setAppList: (state, val) => {
         state.appList = val;
+    },
+    setRecipes: (state, val) => {
+        state.recipes = val;
+    },
+    setCraftingComplete: (state, val) => {
+        state.isCrafting = val;
     }
 }

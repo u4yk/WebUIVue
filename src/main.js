@@ -35,17 +35,18 @@ let appList = {
     DelAppInventory: './components/delPhone/apps/DelAppInventory.vue',
     DelAppFactions: './components/delPhone/apps/DelAppFactions.vue',
     DelAppQuests: './components/delPhone/apps/DelAppQuests.vue',
+    DelAppCrafting: './components/delPhone/apps/DelAppCrafting.vue',
 };
 
-const shrinkwrap = s => s.split(/([A-Z]+[^A-Z]+)/).filter(v => v !== '').join('-').toLowerCase();
+const kebab = s => s.split(/([A-Z]+[^A-Z]+)/).filter(v => v !== '').join('-').toLowerCase();
 const updateApps = alist => {
   for (let app in alist) {
-    Vue.component(shrinkwrap(app), () => import(`${alist[app]}`));
+    Vue.component(kebab(app), () => import(`${alist[app]}`));
   }
 }
 
 updateApps(appList);
-store.commit('del/setAppList', Object.keys(appList).map(v => shrinkwrap(v)));
+store.commit('del/setAppList', Object.keys(appList).map(v => kebab(v)));
 
 window.ue.interface.setAppList = apps => {
   const a = {};
