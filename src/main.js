@@ -55,7 +55,10 @@ window.ue.interface.setAppList = apps => {
     }
   }
   updateApps(a);
-  appList = a;
+  appList = {
+    ...appList,
+    ...a
+  };
   store.commit('del/setAppList', Object.keys(appList));
 }
 
