@@ -94,7 +94,7 @@ and the phone will display if true or hide if false.
 While the phone does work, the apps still needs work.  That said, the underlying groundwork is there to build apps, which is nothing more than composing with the DelPhoneApp component.  The simplest way to do so is define to your Vue component template like this:
 
     <template>
-        <del-phone-app appname="myApp">
+        <del-phone-app appname="my-app">
             <template v-slot:app-icon>
                 <div class="icon">MA</div>
             </template>
@@ -107,41 +107,35 @@ While the phone does work, the apps still needs work.  That said, the underlying
 You can, then, build off the template to create complex apps.  Please note that everything that runs inside the app will be contained within the **app-main** slot while your app icon (shown on the home screen) will be the contents inside the **app-icon** slot.  The icon area is 50px X 50px window; so, make sure your icon will display within that area. One other thing: it's imperative that you make sure your app names are unique; so, ensure that the appname you pass to DelPhoneApp is unique.
 
 ### Installing apps
-Once you have your app created, you can install it by including in your **DelPhone.vue** component located in src/components/delPhone/.  
+Apps are now loaded as dynamic Vue components.  There's two ways you can change what apps get loaded: update the appList in main.js or have UE4 tell Vue what apps to load.  
 
-First, import your component into DelPhone.vue inside the script tag like so:
+#### Updating main.js
+If you choose to modify the appList, edit the following object in /src/main.js:
+
+    let appList = {
+        DelAppMail: './components/delPhone/apps/DelAppMail.vue',
+        DelAppMaps: './components/delPhone/apps/DelAppMaps.vue',
+        DelAppMusic: './components/delPhone/apps/DelAppMusic.vue',
+        DelAppReticle: './components/delPhone/apps/DelAppReticle.vue',
+        DelAppVideoSettings: './components/delPhone/apps/DelAppVideoSettings.vue',
+        DelAppCameraSetting: './components/delPhone/apps/DelAppCameraSetting.vue',
+        DelAppInventory: './components/delPhone/apps/DelAppInventory.vue',
+        DelAppFactions: './components/delPhone/apps/DelAppFactions.vue',
+        DelAppQuests: './components/delPhone/apps/DelAppQuests.vue',
+    };
+
+This object will tell Vue what apps load in DelPhone.
+
+#### Fully-dynamic app list
+On the other hand, if you choose truly have the apps load dynamically, set appList to an empty object in /src/main.js, and then call setAppList from UE4 with an object with key-value pairs -- where that object mimics the original appList object.
+
+#### App naming and the app list
+Regardless of how you populate your apps, it's imperative that the key you use is either the PascalCase or the camelCase version of the name property of your component, which should be kebab-cased.  In other words, if you define an app with the 'DelAppWidget' key in your appList, your app component should at least have the following in its script tag:
 
     <script>
-    import DelPhoneHomePage from './DelPhoneHomePage.vue';
-    import DelAppMail from '../delPhone/apps/DelAppMail.vue';
-    import DelAppMaps from '../delPhone/apps/DelAppMaps.vue';
-    import DelAppMusic from '../delPhone/apps/DelAppMusic.vue';
-    import DelAppReticle from '../delPhone/apps/DelAppReticle.vue';
-    //Your app import goes here
-    import MyApp from '../delPhone/apps/MyApp.vue';
-
-Next, include the component right below the previous step like this:
-
     export default {
-    name: 'del-phone',
-    components: {
-        DelPhoneHomePage,
-        DelAppMail,
-        DelAppMaps,
-        DelAppMusic,
-        DelAppReticle,
-        //Your component goes right here
-        MyApp
+        name: 'del-app-widget',
+    }
+    </script>
 
-Finally, add the component tag to the template inside the DelPhoneHomePage component.  It should look something like this:
-
-    <DelPhoneHomePage v-if="getSlot(0)">
-        <del-app-mail></del-app-mail>
-        <del-app-maps></del-app-maps>
-        <del-app-music></del-app-music>
-        <del-app-reticle></del-app-reticle>
-        <!-- Your custom app goes here -->
-        <MyApp></MyApp>
-    </DelPhoneHomePage>
-
-Now, your app is installed.
+Failing to adhering to this naming rule will cause your app to fail to load.
