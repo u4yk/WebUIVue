@@ -1,6 +1,7 @@
 <template>
     <div class="hud">
         <div class="main-container" v-if="isMain">
+            <compass></compass>
             <Reticle v-if="isReticleOn">
                 <Crosshair v-if="isReticleCrosshair"></Crosshair>
                 <Dot v-if="isReticleDot"></Dot>
@@ -9,6 +10,7 @@
             <Overlay v-if="isDead">You're dead!</Overlay>
         </div>
         <Dialogue v-if="isDialogue"></Dialogue>
+        <ElevatorPanel v-if="isElevator"></ElevatorPanel>
         <Inventory v-if="isInventory"></Inventory>
         <DelPhone v-if="isDelPhoneOpen"></DelPhone>
     </div>
@@ -22,10 +24,10 @@ import Inventory from './Inventory.vue';
 import LifeMeter from './LifeMeter.vue';
 import Overlay from './Overlay.vue';
 import Reticle from './Reticle.vue';
-
+import ElevatorPanel from './elevator/ElevatorPanel.vue';
+import Compass from './Compass.vue';
 import Crosshair from './reticles/Crosshair.vue';
 import Dot from './reticles/Dot.vue';
-
 import DelPhone from '../delPhone/DelPhone.vue';
 
 export default {
@@ -38,6 +40,8 @@ export default {
         Reticle,
         Crosshair,
         Dot,
+        ElevatorPanel,
+        Compass,
         DelPhone
     },
     computed: {
@@ -55,6 +59,9 @@ export default {
         },
         isReticleOn () {
             return this.$store.state.hud.isReticleOn;
+        },
+        isElevator () {
+            return this.$store.state.hud.displayState === 'elevatorpanel';
         },
         isReticleCrosshair () {
             return this.$store.state.hud.reticleStyle === 'crosshair';

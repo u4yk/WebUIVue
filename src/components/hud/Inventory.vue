@@ -4,7 +4,7 @@
             <md-button @click="prevType" class="md-icon-button md-raised md-primary start">
                 <md-icon class="fa fa-arrow-circle-left"></md-icon>
             </md-button>
-            <h2>Type: {{getType}}</h2>
+            <h2>{{getType}}</h2>
             <md-button @click="nextType" class="md-icon-button md-raised md-primary end">
                 <md-icon class="fa fa-arrow-circle-right"></md-icon>
             </md-button>

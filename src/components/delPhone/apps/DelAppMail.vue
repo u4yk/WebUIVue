@@ -4,7 +4,7 @@
             <div class="icon"><md-icon class="fa fa-envelope"></md-icon></div>
         </template>
         <template v-slot:app-main>
-            <div class="del-phone-app-mail"></div>
+            <div class="del-app-mail"></div>
         </template>
     </del-phone-app>
 </template>

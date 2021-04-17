@@ -17,7 +17,7 @@ export default {
             const c = this.$store.state.hud.reticleColor;
             return `background: rgba(${c[0]}, ${c[1]}, ${c[2]}, ${c[3]})`;
         }
-    }
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -30,7 +30,7 @@ $sh: calc(50% - 2px);
     position: relative;
     width: $box;
     height: $box;
-    transition: width 0.125s, height 0.125s;
+    transition: width 0.0625s, height 0.0625s;
 
     .top {
         position: absolute;

@@ -14,6 +14,10 @@ export default toUE4({
         if (val.next === '') {
             store.commit('hud/setDisplayState', 'main');
         }
+        
+    },
+    getSelectedElevatorFloor: (val) => {
+        store.commit('hud/setDisplayState', 'main');
     },
     inventoryTransfer: () => {
         store.commit('hud/setDisplayState', 'main');

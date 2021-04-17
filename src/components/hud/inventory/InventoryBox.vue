@@ -1,6 +1,6 @@
 <template>
     <div class="inventory-box">
-        <div class="inventory-box-container">
+        <md-content class="md-scrollbar inventory-box-container">
             <div class="inventory-box-item" v-for="(i, idx) in items" :key="idx" :class="{expanded: isExpanded(idx)}">
                 <md-toolbar class="inventory-box-item-toolbox">
                     <div class="left">
@@ -21,10 +21,10 @@
                 </md-toolbar>
                 <md-content class="inventory-box-item-content" v-show="isExpanded(idx)">
                     <div class="description left md-primary">{{i.desc}}</div>
-                    <div class="value right md-primary">&#164;{{i.value}}</div>
+                    <div class="value right md-primary">&#36;{{i.value}}</div>
                 </md-content>
             </div>
-        </div>
+        </md-content>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -32,8 +32,9 @@
     width: 40vw;
     height: 70vh;
     border: 0.25rem solid var(--md-theme-default-primary, #448aff);
-    border-radius: 25px;
+    border-radius: 15px;
     margin: 0 5vw;
+    padding: 0;
     display: flex;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
@@ -41,12 +42,14 @@
 .inventory-box-container {
     width: 100%;
     height: 100%;
-    overflow: hidden auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
-    flex: 1 0 40vw;
+    flex: 1 0 calc(40vw - 20px);
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-content: stretch;
+    border-radius: 10   px;
 }
 .inventory-box-item {
     display: flex;
@@ -67,11 +70,11 @@
     width: 100%;
     height: 1.25rem;
     flex: 0 0 1.25em;
-    
     &.md-toolbar{
         background: rgba(228, 222, 222, 0.25);
         .md-title{
-            color: rgb(255, 255, 255);
+            color: #448aff;
+            padding: 0 1vw 0 0;
         }
     }
 }
@@ -82,9 +85,13 @@
     height: 1.5rem;
     flex: 1 0 1.5rem;
     padding: 1rem 2rem;
-
+    color: #448aff;
     &.md-content {
         background: rgba(255,255,255,0.25);
+        div {
+            color: #448aff;
+            padding: 0 1vw 0 0;
+        }
     }
 }
 
@@ -120,6 +127,7 @@
 <script>
 /**
  * name,
+ * cname,
  * type,
  * cond,
  * condMax,
@@ -143,7 +151,7 @@ export default {
             const other = store[this.otherkey];
             let index = -1;
             const oFilter = other.filter((v,i) => {
-                if (v.name === me[idx].name && v.cond === me[idx].cond) {
+                if (v.cname === me[idx].cname && v.cond === me[idx].cond) {
                     index = i;
                     return true;
                 }
@@ -190,6 +198,7 @@ export default {
         expand (idx) {
             this.expandedList[idx] = !this.expandedList[idx];
             this.$forceUpdate();
+            console.log(this.$store.state.hud.inventory.other)
         }
     }
 }

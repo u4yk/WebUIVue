@@ -4,7 +4,8 @@ import mutations from './mutations'
 
 const state = () => ({
   currentApp: '',
-  isOpen: false
+  isOpen: false,
+  appList: [],
 })
 
 export default {

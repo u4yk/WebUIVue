@@ -17,6 +17,16 @@ export default {
     setDisplayState: (state, val) => {
         state.displayState = val;
     },
+    setPlayerXform: (state, val) => {
+        state.playerXform = val;
+    },
+    setPerceivedNPCs: (state, val) => {
+        state.perceivedNPCs = val;
+    },
+    showElevatorButtons: (state, val) => {
+        state.displayState = val.isOn ? 'elevatorpanel' : 'main';
+        state.elevatorFloors = val.floors;
+    },
     updateCameraPosition: (state, val) => {
         state.cameraPosition = val;
     },
@@ -29,7 +39,8 @@ export default {
     },
     showDialogue: (state, val) => {
         state.dialogue = val;
-        state.displayState = 'dialogue';
+        if (state.displayState !== 'dialogue')
+            state.displayState = 'dialogue';
     },
     setDialogue: (state, val) => {
         state.dialogue = val;

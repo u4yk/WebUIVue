@@ -1,10 +1,10 @@
 <template>
-    <div class="del-phone-page">
+    <div class="del-phone-home-page">
         <slot></slot>
     </div>
 </template>
 <style lang="scss" scoped>
-    .del-phone-page {
+    .del-phone-home-page {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -15,6 +15,6 @@
 </style>
 <script>
 export default {
-    name: 'del-phone-page'
+    name: 'del-phone-home-page'
 }
 </script>

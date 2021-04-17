@@ -5,10 +5,13 @@ export default {
         setDisplayState: () => {},
         setIsReticleOn: () => {},
         setIsReticleFired: () => {},
+        setPlayerXform: () => {},
+        setPerceivedNPCs: () => {},
         setReticleStyle: () => {},
         setReticleColor: () => {},
-        updateCameraPosition: (val) => {console.log(val)},
+        updateCameraPosition: () => {},
         updateInventory: () => {},
+        showElevatorButtons: () => {},
         showRemoteInventory: (val) => {
             val.player = val.player && val.player.length ? val.player : [];
             val.other = val.other && val.other.length ? val.other : [];

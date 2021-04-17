@@ -117,7 +117,7 @@ export default {
 
             return {
                 nextItem: store.player.filter((v, idx) => {
-                    const thisIsIt = v.name === item.name && v.type.indexOf(type) !== -1;
+                    const thisIsIt = v.cname === item.cname && v.type.indexOf(type) !== -1;
 
                     if (thisIsIt) {
                         i = idx;
@@ -156,7 +156,7 @@ export default {
             if (unequip) {
                 store.player[nextPos].isEquipped = false;
                 nextItem = cloneDeep(nextItem);
-                nextItem.name = '';
+                nextItem.cname = '';
             } else {
                 store.player[nextPos] = nextItem;
             }
@@ -205,7 +205,7 @@ export default {
     }
 
     .md-content {
-        overflow: hidden auto;
+        overflow-x: hidden;
         height: 56vh;
     }
     .md-list {

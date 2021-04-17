@@ -1,63 +1,53 @@
 <template>
     <div class="settings">
-        <ul class="settings-menu">
-            <li>Audio</li>
-            <li>Video</li>
-            <li>Key Config</li>
+        <ul class="settings-menu menu">
+            <li @click="toAudio">Audio</li>
+            <li @click="toVideo">Video</li>
+            <li @click="toKey">Key Config</li>
             <li class="back" @click="toMain">Back to Main</li>
         </ul>
-        <AudioConfig v-if="isAudio"></AudioConfig>
-        <VideoConfig v-if="isVideo"></VideoConfig>
-        <KeyConfig v-if="isKey"></KeyConfig>
+        <audio-config v-if="isAudio"></audio-config>
+        <video-config v-if="isVideo"></video-config>
+        <key-config v-if="isVideo"></key-config>
     </div>
 </template>
 <style lang="scss" scoped>
-.settings {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-}
-.settings-menu {
+.menu {
     list-style-type: none;
     width: 20vw;
     position: absolute;
     top: 10vh;
     right: 5vw;
     text-align: left;
-    color: #fff;
-    background: rgba(0,0,0,0.5);
+    color: #e7eaec;
+    background: #05080e;
     border-radius: 25px;
     padding: 5vh 1vw;
-    
+
     li {
         height: 8vh;
         cursor: pointer;
         padding: 0 1vw;
 
         &:hover {
-            color: #000;
-            background: rgba(255,255,255,0.5);
-        }
-        
-        &.back {
-            margin-top: 5vh;
+            color: #05080e;
+            background: #e7eaec;
         }
     }
 }
 </style>
 <script>
-import AudioConfig from './configs/AudioConfig';
-import VideoConfig from './configs/VideoConfig';
-import KeyConfig from './configs/KeyConfig';
+
+import AudioConfig from './configs/AudioConfig.vue';
+import KeyConfig from './configs/KeyConfig.vue';
+import VideoConfig from './configs/VideoConfig.vue';
 
 export default{
     name: 'settings',
     components: {
-        AudioConfig,
         VideoConfig,
         KeyConfig,
+        AudioConfig,
     },
     computed: {
         isAudio () { return this.$store.state.menu.currentSubMenu === 'audio'},

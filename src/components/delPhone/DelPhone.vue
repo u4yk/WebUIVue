@@ -8,16 +8,7 @@
             <div class="del-phone-container">
                 <div class="del-phone-home">
                     <DelPhoneHomePage v-if="getSlot(0)">
-                        <del-app-mail></del-app-mail>
-                        <del-app-maps></del-app-maps>
-                        <del-app-music></del-app-music>
-                        <del-app-reticle></del-app-reticle>
-                        <del-app-video-settings></del-app-video-settings>
-                        <del-app-camera-setting></del-app-camera-setting>
-                        <del-app-inventory></del-app-inventory>
-                        <del-app-factions></del-app-factions>
-                        <del-app-quests></del-app-quests>
-                        <!-- Your custom app goes here -->
+                        <component v-for="(item, i) in getApps" :is="item" :key="i" />
                     </DelPhoneHomePage>
                 </div>
             </div>
@@ -96,31 +87,11 @@
 </style>
 <script>
 import DelPhoneHomePage from './DelPhoneHomePage.vue';
-import DelAppMail from '../delPhone/apps/DelAppMail.vue';
-import DelAppMaps from '../delPhone/apps/DelAppMaps.vue';
-import DelAppMusic from '../delPhone/apps/DelAppMusic.vue';
-import DelAppReticle from '../delPhone/apps/DelAppReticle.vue';
-import DelAppVideoSettings from '../delPhone/apps/DelAppVideoSettings.vue';
-import DelAppCameraSetting from '../delPhone/apps/DelAppCameraSetting.vue';
-import DelAppInventory from '../delPhone/apps/DelAppInventory.vue';
-import DelAppFactions from '../delPhone/apps/DelAppFactions.vue';
-import DelAppQuests from '../delPhone/apps/DelAppQuests.vue';
-//Your app import goes here
 
 export default {
     name: 'del-phone',
     components: {
         DelPhoneHomePage,
-        DelAppMail,
-        DelAppMaps,
-        DelAppMusic,
-        DelAppReticle,
-        DelAppVideoSettings,
-        DelAppCameraSetting,
-        DelAppInventory,
-        DelAppFactions,
-        DelAppQuests,
-        //Your component goes right here
     },
     data () {
         return {
@@ -138,7 +109,11 @@ export default {
         },
         isAppOpen () {
             return this.$store.state.del.currentApp !== '';
+        },
+        getApps () {
+            return this.$store.state.del.appList;
         }
+
     },
     methods: {
         getSlot (i) {
@@ -147,6 +122,6 @@ export default {
         goHome () {
             this.$store.commit('del/setCurrentApp', '');
         }
-    }
+    },
 }
 </script>

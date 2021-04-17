@@ -4,5 +4,8 @@ export default {
     },
     setCurrentApp: (state, val) => {
         state.currentApp = val;
+    },
+    setAppList: (state, val) => {
+        state.appList = val;
     }
 }
