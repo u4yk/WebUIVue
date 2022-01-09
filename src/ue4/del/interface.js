@@ -5,5 +5,6 @@ export default toUEInterface({
     setCurrentApp: () => {},
     setIsOpen: (v) => {store.commit('hud/setDisplayState', v ? 'del' : 'main');},
     setRecipes: () => {},
+    setQuests: () => {},
     setCraftingComplete: () => {}
 }, 'del');

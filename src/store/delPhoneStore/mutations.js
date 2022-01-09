@@ -11,6 +11,9 @@ export default {
     setRecipes: (state, val) => {
         state.recipes = val;
     },
+    setQuests: (state, val) => {
+        state.quests = val;
+    },
     setCraftingComplete: (state, val) => {
         state.isCrafting = val;
     }

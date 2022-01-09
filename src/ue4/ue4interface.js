@@ -2,6 +2,7 @@ import {toUEInterface} from './ue4lib';
 
 export default {
     ...toUEInterface({
+        addNotification: () => {},
         setDisplayState: () => {},
         setIsReticleOn: () => {},
         setIsReticleFired: () => {},
@@ -36,6 +37,7 @@ export default {
         setHealth: () => {},
         setHealthMax: () => {},
         setIsDead: () => {},
+        setUserStats: () => {},
         updateHealth: () => {},
     })
 }

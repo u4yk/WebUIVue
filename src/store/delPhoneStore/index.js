@@ -7,6 +7,7 @@ const state = () => ({
   isOpen: false,
   appList: [],
   recipes: [],
+  quests: {},
   isCrafting: false,
 })
 

@@ -1,17 +1,16 @@
 <template>
-    <del-phone-app appname="quests">
+    <del-phone-app appname="flashlight">
         <template v-slot:app-icon>
-            <div class="icon"><md-icon class="fa fa-map-marker-alt"></md-icon></div>
+            <div class="icon"><md-icon class="fa fa-lightbulb-o"></md-icon></div>
         </template>
         <template v-slot:app-main>
-            <div class="del-phone-app-quests"></div>
+            <div class="del-phone-app-flashlight"></div>
         </template>
     </del-phone-app>
 </template>
 <script>
 export default {
-    name: 'del-app-quests',
-    computed: {}
+    name: 'del-app-flashlight',
 }
 </script>
 <style lang="scss" scoped>

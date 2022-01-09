@@ -7,9 +7,7 @@
             </div>
             <div class="del-phone-container">
                 <div class="del-phone-home">
-                    <DelPhoneHomePage v-if="getSlot(0)">
-                        <component v-for="(item, i) in getApps" :is="item" :key="i" />
-                    </DelPhoneHomePage>
+                    <component v-for="(item, i) in getApps" :is="item" :key="i" />
                 </div>
             </div>
             <button class="del-phone-button" @click="goHome"></button>
@@ -48,17 +46,17 @@
 }
 
 .del-phone-button {
-    width: 7vw;
+    width: 12vw;
     height: 7vh;
     z-index: 3;
     position: absolute;
     bottom: 2vh;
-    left: calc(50% - 3.5vw);
+    left: calc(50% - 6vw);
     border-radius: 100px;
-    background: rgba(133,133,133,1);
+    background: #858585;
     outline: none;
     box-shadow: inset -5px -5px 16px 1px black;
-    border: 1px solid rgba(133,133,133,1);
+    border: 1px solid #858585;
 
     &:active {
         box-shadow: inset 1px 2px 9px 5px black;
@@ -83,6 +81,14 @@
     width: 100%;
     height: 100%;
     background-image: linear-gradient( 135deg, #F97794 10%, #623AA2 100%);
+    padding: 5%;
+    display: flex;
+    flex: 1 1 90%;
+    flex-flow: wrap;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
 }
 </style>
 <script>

@@ -26,16 +26,17 @@ window.ue = {
 };
 
 let appList = {
+    DelAppCameraSetting: './components/delPhone/apps/DelAppCameraSetting.vue',
+    DelAppCrafting: './components/delPhone/apps/DelAppCrafting.vue',
+    DelAppFactions: './components/delPhone/apps/DelAppFactions.vue',
+    DelAppHealth: './components/delPhone/apps/DelAppHealth.vue',
+    DelAppInventory: './components/delPhone/apps/DelAppInventory.vue',
     DelAppMail: './components/delPhone/apps/DelAppMail.vue',
     DelAppMaps: './components/delPhone/apps/DelAppMaps.vue',
     DelAppMusic: './components/delPhone/apps/DelAppMusic.vue',
+    DelAppQuests: './components/delPhone/apps/DelAppQuests.vue',
     DelAppReticle: './components/delPhone/apps/DelAppReticle.vue',
     DelAppVideoSettings: './components/delPhone/apps/DelAppVideoSettings.vue',
-    DelAppCameraSetting: './components/delPhone/apps/DelAppCameraSetting.vue',
-    DelAppInventory: './components/delPhone/apps/DelAppInventory.vue',
-    DelAppFactions: './components/delPhone/apps/DelAppFactions.vue',
-    DelAppQuests: './components/delPhone/apps/DelAppQuests.vue',
-    DelAppCrafting: './components/delPhone/apps/DelAppCrafting.vue',
 };
 
 const kebab = s => s.split(/([A-Z]+[^A-Z]+)/).filter(v => v !== '').join('-').toLowerCase();

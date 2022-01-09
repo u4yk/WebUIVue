@@ -1,5 +1,5 @@
 <template>
-    <div class="del-phone-app">
+    <div class="del-phone-app" :class="{'active-state': isActiveApp}">
         <div class="del-phone-app-icon" @click="clickIcon" v-show="isHome">
             <div class="del-phone-app-icon-icon"><slot name="app-icon"></slot></div>
             <div class="del-phone-app-icon-label">{{uc(appname)}}</div>
@@ -11,21 +11,24 @@
 </template>
 <style scoped lang="scss">
 .del-phone-app {
-    float: left;
-    position: static;
-    user-select: none;
+    display: flex;
+    flex: 1 1 4em;
+
+    &.active-state {
+        flex: 1 1 100%;
+    }
 }
 .del-phone-app-icon { 
-    width: 75px;
-    height: 70px;
     position: relative;
-    float: left;
-    margin: 0 10px 20px 0;
+    width: 4em;
+    height: 4em;
+    display: flex;
+    margin: 0 0.5em 2em 0;
     cursor: pointer;
 }
 .del-phone-app-icon-icon {
-    width: 50px;
-    height: 50px;
+    width: 3em;
+    height: 3em;
     background: #fff;
     border-radius: 10px;
     position: relative;
@@ -34,17 +37,35 @@
     overflow: hidden;
     border: 2px solid #fff;
     box-shadow: 3px 2px 1px 1px rgba(0,0,0,1);
+    text-align: center;
+
+    .md-icon {
+        position: relative;
+        
+        &::before {
+            font-size: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 100%;
+            width: 100%;
+        }
+    }
 }
 .del-phone-app-icon-label {
     width: 100%;
     position: absolute;
     height: 1.25em;
-    bottom: 0;
+    bottom: -1em;
     left: 0;
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
     color: #fff;
+    margin-left: 0.5em;
+    font-size: 0.75em;
+    padding-bottom: 2em;
 }
 
 .del-phone-app-main {

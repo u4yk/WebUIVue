@@ -18,7 +18,7 @@
                     <span class="right">{{getY}}</span>
                 </md-toolbar>
                 <md-toolbar>
-                    <input type="range" v-model="z" min="-10" max="500">
+                    <input type="range" v-model="z" min="-50" max="75">
                     <span class="left">Z</span>
                     <span class="right">{{getZ}}</span>
                 </md-toolbar>

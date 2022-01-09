@@ -1,9 +1,15 @@
 export default {
+    addNotifications: (state, val) => {
+        state.notifications = [...state.notifications,...val];
+    },
     setIsReticleOn: (state, val) => {
         state.isReticleOn = val;
     },
     setIsReticleFired: (state, val) => {
         state.isReticleFired = val;
+    },
+    setNotifications: (state, val) => {
+        state.notifications = val;
     },
     setReticleStyle: (state, val) => {
         state.reticleStyle = val;
@@ -35,12 +41,10 @@ export default {
     },
     showRemoteInventory: (state, val) => {
         state.inventory = val;
-        state.displayState = 'inventory';
     },
     showDialogue: (state, val) => {
         state.dialogue = val;
-        if (state.displayState !== 'dialogue')
-            state.displayState = 'dialogue';
+        state.displayState = val ? 'dialogue' : 'main';
     },
     setDialogue: (state, val) => {
         state.dialogue = val;

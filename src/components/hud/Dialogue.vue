@@ -4,14 +4,14 @@
             <div class="title primary">{{getName}}</div>
             <div class="content" >{{getText}}</div>
         </div>
-        <div class="dialogue-text" v-if="isShowingResponses">
+        <div class="dialogue-text responses" v-else>
             <div class="title primary">{{getName}}</div>
-            <div class="content responses" v-if="hasResponses">
-                <ul class="dialogue-responses">
-                    <li v-for="(item, idx) in getResponses" :key="idx" @click="getResponse(item.id, item.next)">{{item.text}}</li>
-                </ul>
+            <div class="content responses">
+                <div class="dialogue-responses" v-for="(item, idx) in getResponses" :key="idx" @click.self="getResponse(item.id, item.next)">
+                    {{item.text}}
+                </div>
             </div>
-            <div class="content" v-if="!hasResponses" @click="showResponses">{{getText}}</div>
+            <!-- <div class="content" v-if="!hasResponses" @click="showResponses">{{getText}}</div> -->
         </div>
     </div>
 </template>
@@ -33,7 +33,7 @@
     width: 60vw;
     left: 20vw;
     border-radius: 15px;
-    border: 5px solid #05080e;
+    border: 5px solid #e7eaec;
     overflow: hidden;
     padding: 0;
     cursor: pointer;
@@ -55,8 +55,8 @@
     }
 
     .content {
-        color: #05080e;
-        background: #e7eaec;
+        background: rgba(100, 149, 237, 0.5);
+        color: #e7eaec;
         height: calc(35vh - 3.5rem);
         width: 100%;
         padding: 2rem 2.5rem;
@@ -68,32 +68,28 @@
         text-align: left;
         float: left;
         &.responses {
-            padding: 0 1rem;
+            background: rgba(100, 149, 237, 1);
+            padding: 1.5rem 0;
         }
     }
 }
-.dialogue-responses {
-    width: 100%;
-    padding: 0;
-    text-align: left;
-    float: left;
 
-    li {
-        display: flex;
-        flex: 1 0 100%;
-        list-style: none;
-        align-self:flex-start;
-        margin: 0;
-        height: 2em;
-        line-height: 2em;
-        padding: 0 1rem;
-        width: 100%;
-        &:hover {
-            background: #05080e;
-            color: #e7eaec;
-        }
+.dialogue-responses {
+    display: flex;
+    flex: 1 0 100%;
+    list-style: none;
+    align-self:flex-start;
+    margin: 0;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 2.5rem;
+    width: 100%;
+    &:hover {
+        background: #e7eaec;
+        color: #05080e;
     }
 }
+
 </style>
 <script>
 export default{
@@ -156,6 +152,7 @@ export default{
             this.isShowingResponses = false;
             ue.requests.getDialogueOption({
                 id: id,
+                prev: this.$store.state.hud.dialogue.id,
                 next: next
             });
         }

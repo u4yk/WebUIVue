@@ -3,9 +3,7 @@
         <md-content class="md-scrollbar inventory-box-container">
             <div class="inventory-box-item" v-for="(i, idx) in items" :key="idx" :class="{expanded: isExpanded(idx)}">
                 <md-toolbar class="inventory-box-item-toolbox">
-                    <div class="left">
-                    <h3 class="md-title">{{i.name}}</h3>
-                    </div>
+                    <div class="left"><h3 class="md-title">{{i.name}}</h3></div>
                     <div class="right">
                         <h3 class="md-title">{{i.qty}}</h3>
                         <md-button class="md-icon-button md-raised md-primary" @click="inc(idx)">
@@ -151,7 +149,7 @@ export default {
             const other = store[this.otherkey];
             let index = -1;
             const oFilter = other.filter((v,i) => {
-                if (v.cname === me[idx].cname && v.cond === me[idx].cond) {
+                if (v.name === me[idx].name) {
                     index = i;
                     return true;
                 }
@@ -163,12 +161,12 @@ export default {
         inc (idx) {
             const [store, me, other, oFilter, index] = this.c(idx);
 
-            if (index !== -1 ) {
+            if (index !== -1) {
                 --other[index].qty;
                 ++me[idx].qty;
 
                 if (other[index].qty === 0) {
-                    other.splice(index,1)
+                    other.splice(index,1);
                 }
             }
 
@@ -176,8 +174,7 @@ export default {
         },
         dec (idx) {
             const [store, me, other, oFilter, index] = this.c(idx);           
-            
-            if (index !== -1) {
+            if (other[index]) {
                 ++other[index].qty;
             } else {
                 other.push({
@@ -198,7 +195,6 @@ export default {
         expand (idx) {
             this.expandedList[idx] = !this.expandedList[idx];
             this.$forceUpdate();
-            console.log(this.$store.state.hud.inventory.other)
         }
     }
 }

@@ -85,15 +85,17 @@ export default{
     },
     data () {
         return {
-            type: '',
+            type: 'All',
             typeList: [
-                '',
+                'All',
                 'Melee Weapon',
                 'Ranged Weapon',
                 'Clothing',
                 'Food',
                 'Drink',
-                'Ammo'
+                'Ammo',
+                'Notes',
+                'Misc'
             ]
         }
     },
@@ -102,10 +104,10 @@ export default{
             return this.type === '' ? 'All' : this.type;
         },
         getPlayerInventory () {
-            return this.$store.state.hud.inventory.player?.filter(v => this.type === '' || v.type === this.type);
+            return this.$store.state.hud.inventory?.player?.filter(v => this.type === 'All' || v.type === this.type);
         },
         getOtherInventory () {
-            return this.$store.state.hud.inventory?.other?.filter(v => this.type === '' || v.type === this.type);
+            return this.$store.state.hud.inventory?.other?.filter(v => this.type === 'All' || v.type === this.type);
         }
     },
     methods: {

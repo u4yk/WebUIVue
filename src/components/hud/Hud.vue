@@ -6,6 +6,7 @@
                 <Crosshair v-if="isReticleCrosshair"></Crosshair>
                 <Dot v-if="isReticleDot"></Dot>
             </Reticle>
+            <Notification></Notification>
             <LifeMeter></LifeMeter>
             <Overlay v-if="isDead">You're dead!</Overlay>
         </div>
@@ -19,29 +20,31 @@
 
 </style>
 <script>
+import Compass from './Compass.vue';
+import Crosshair from './reticles/Crosshair.vue';
 import Dialogue from './Dialogue.vue';
+import Dot from './reticles/Dot.vue';
+import ElevatorPanel from './elevator/ElevatorPanel.vue';
 import Inventory from './Inventory.vue';
 import LifeMeter from './LifeMeter.vue';
 import Overlay from './Overlay.vue';
 import Reticle from './Reticle.vue';
-import ElevatorPanel from './elevator/ElevatorPanel.vue';
-import Compass from './Compass.vue';
-import Crosshair from './reticles/Crosshair.vue';
-import Dot from './reticles/Dot.vue';
+import Notification from './Notification.vue';
 import DelPhone from '../delPhone/DelPhone.vue';
 
 export default {
     name: 'hud',
     components: {
-        Dialogue,
-        Inventory,
-        LifeMeter,
-        Overlay,
-        Reticle,
+        Compass,
         Crosshair,
+        Dialogue,
         Dot,
         ElevatorPanel,
-        Compass,
+        Inventory,
+        LifeMeter,
+        Notification,
+        Overlay,
+        Reticle,
         DelPhone
     },
     computed: {

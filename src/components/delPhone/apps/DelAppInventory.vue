@@ -20,17 +20,23 @@
                             <md-avatar class="md-avatar-icon md-primary">{{item.type.substr(0,1)}}</md-avatar>
                             <span class="md-list-item-text">{{item.name}}</span>
                             <md-list slot="md-expand">
-                                <md-list-item class="md-inset in-use" :class="{hidden: !item.isEquipped}" :style="getInnerStyle">In Use</md-list-item>
+                                <md-list-item class="md-inset in-use" v-if="item.isEquipped" :style="getInnerStyle">In Use</md-list-item>
                                 <md-list-item class="md-inset" :style="getInnerStyle">Quantity: {{item.qty}}</md-list-item>
-                                <md-list-item class="md-inset" v-if="isEquippable(item)" :style="getInnerStyle">Condition: {{item.cond/item.condMax*100}}%</md-list-item>
-                                <md-list-item class="md-inset" v-if="item.desc.length > 0" :style="getInnerStyle">{{item.desc}}</md-list-item>
+                                <!-- <md-list-item class="md-inset" v-if="isEquippable(item)" :style="getInnerStyle">Condition: {{item.cond/item.condMax*100}}%</md-list-item> -->
+                                <md-list-item class="md-inset" v-if="item.desc && item.desc.length > 0" :style="getInnerStyle">{{item.desc}}</md-list-item>
+                                <md-list-item class="md-inset" v-if="item.mods && item.mods.length > 0" :style="getInnerStyle">Mods</md-list-item>
+                                <md-list-item class="md-inset" v-if="item.mods && item.mods.length > 0" :style="getInnerStyle">
+                                    <ul>
+                                        <li v-for="(mod, m) in item.mods" :key="m"><b>{{mod.name}}:</b> {{mod.description}}</li>
+                                    </ul>
+                                </md-list-item>
                                 <md-list-item class="md-inset" v-if="isEquippable(item)" style="margin-left: -36px">
                                     <md-button class="md-primary md-raised" v-if="!item.isEquipped" @click="equip(item, false)">Equip</md-button>
                                     <md-button class="md-primary md-raised" v-if="item.isEquipped" @click="equip(item, true)">Unequip</md-button>
                                     <md-button class="md-primary md-raised" @click="repair(item)" v-if="canRepair(item)">Repair</md-button>
                                 </md-list-item>
                                 <md-list-item class="md-inset" v-if="isConsumable(item)" style="margin-left: -36px">
-                                    <md-button class="md-primary md-raised" @click="equip(item)">Consume</md-button>
+                                    <md-button class="md-primary md-raised" @click="consume(item)">Consume</md-button>
                                 </md-list-item>
                             </md-list>
                         </md-list-item>
@@ -48,25 +54,26 @@ export default {
     name: 'del-app-inventory',
     data () {
         return {
-            type: '',
+            type: 'All',
             typeList: [
-                '',
+                'All',
                 'Melee Weapon',
                 'Ranged Weapon',
                 'Clothing',
                 'Food',
                 'Drink',
                 'Ammo',
-                'Component'
+                'Notes',
+                'Misc'
             ]
         }
     },
     computed: {
          getType () {
-            return this.type === '' ? 'All' : this.type;
+            return this.type;
         },
         getPlayerInventory () {
-            return this.$store.state.hud.inventory.player?.filter(v => this.type === '' || v.type === this.type);
+            return this.$store.state.hud.inventory.player?.filter(v => this.type === 'All' || v.type === this.type);
         },
         getInnerStyle () {
             return `margin-top: -16px; margin-left: -36px;`;
@@ -117,7 +124,7 @@ export default {
 
             return {
                 nextItem: store.player.filter((v, idx) => {
-                    const thisIsIt = v.cname === item.cname && v.type.indexOf(type) !== -1;
+                    const thisIsIt = v.name === item.name && v.type.indexOf(type) !== -1;
 
                     if (thisIsIt) {
                         i = idx;
@@ -131,7 +138,7 @@ export default {
                 nextPos: i
             }
         },
-        getPrev (store, item, type) {
+        getPrev (store, type) {
             let current = -1;
 
             return {
@@ -150,13 +157,12 @@ export default {
         equipItem (item, type, unequip) {
             const store = cloneDeep(this.$store.state.hud.inventory);
 
-            let {equipped, current} = this.getPrev(store, item, type);
+            let {equipped, current} = this.getPrev(store, type);
             let {nextItem, nextPos} = this.getNext(store, item, current, equipped, type);
             
             if (unequip) {
                 store.player[nextPos].isEquipped = false;
                 nextItem = cloneDeep(nextItem);
-                nextItem.cname = '';
             } else {
                 store.player[nextPos] = nextItem;
             }
@@ -170,6 +176,21 @@ export default {
             } else if (item.type === 'Clothing') {
                 this.equipItem(item, 'Clothing', unequip);
             } 
+        },
+        consume (item) {
+            const store = cloneDeep(this.$store.state.hud.inventory);
+            const idx = store.player.findIndex(v => v.name === item.name);
+            
+            if (idx > -1) {
+                const nextItem = cloneDeep(store.player[idx]);
+                nextItem.isConsumable = true;
+                ue.requests.equipItem(nextItem);
+                --store.player[idx].qty;
+                if( store.player[idx].qty < 1) {
+                    store.player.splice(idx,1);
+                }
+                this.$store.commit('hud/updateInventory', store);
+            }
         }
     }
 }
@@ -211,12 +232,32 @@ export default {
     .md-list {
         flex-basis: 100%;
     }
-    .md-list-item.md-inset .md-list-item-content {
-        padding: 0 !important;
-        min-height: 24px;
+    .md-list-item.md-inset 
+    {
+        .md-list-item-content {
+            padding: 0 !important;
+            min-height: 24px;
 
-        .md-button {
-            margin-left: 0;
+            .md-button {
+                margin-left: 0;
+            }
+        }
+        .md-list-item-container {
+            width: 100%;
+            float: left;
+
+            ul {
+                width: 100%;
+                float: left;
+                margin-left: -1em;
+
+                & > li{
+                    width: 100%;
+                    float: left;
+                    white-space: normal;
+                    margin-bottom: 0.5em;
+                }
+            }
         }
     }
     .inventory-type {

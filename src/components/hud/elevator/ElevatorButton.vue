@@ -9,7 +9,6 @@ export default {
     props: ['floor'],
     methods: {
         clickButton () {
-            console.log(this.floor);
             ue.requests.getSelectedElevatorFloor({floor: this.floor});
         }
     }

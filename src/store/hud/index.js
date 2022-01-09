@@ -3,14 +3,24 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = () => ({
-  reticleColor: [255,255,255,1],
+  cameraPosition: {
+    x: 0,
+    y: 0,
+    z: 0
+  },
   elevatorFloors: -1,
+  dialogue: {},
   displayState: 'main',
-  reticleStyle: 'crosshair',
+  inventory: {
+    player: [],
+    other: []
+  },
   isReticleOn: false,
   isReticleFired: false,
+  notifications: [],
+  reticleColor: [255,255,255,1],
+  reticleStyle: 'crosshair',
   perceivedNPCs: [],
-  dialogue: {},
   playerXform: {
     pos: {
       x: 0,
@@ -18,15 +28,6 @@ const state = () => ({
     },
     rot: 0
   },
-  cameraPosition: {
-    x: 0,
-    y: 0,
-    z: 0
-  },
-  inventory: {
-    player: [],
-    other: []
-  }
 })
 
 export default {

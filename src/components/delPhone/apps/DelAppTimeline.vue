@@ -1,17 +1,16 @@
 <template>
-    <del-phone-app appname="quests">
+    <del-phone-app appname="timeline">
         <template v-slot:app-icon>
-            <div class="icon"><md-icon class="fa fa-map-marker-alt"></md-icon></div>
+            <div class="icon"><md-icon class="fa fa-stream"></md-icon></div>
         </template>
         <template v-slot:app-main>
-            <div class="del-phone-app-quests"></div>
+            <div class="del-phone-app-timeline"></div>
         </template>
     </del-phone-app>
 </template>
 <script>
 export default {
-    name: 'del-app-quests',
-    computed: {}
+    name: 'del-app-timeline'
 }
 </script>
 <style lang="scss" scoped>

@@ -12,6 +12,7 @@ export default new Vuex.Store({
     health: 0,
     healthMax: 0,
     isDead: false,
+    userStats: {}
   },
   mutations: {
     setCurrentSection (state, val) {
@@ -26,9 +27,12 @@ export default new Vuex.Store({
     setIsDead (state, val) {
       state.isDead = val;
     },
+    setUserStats (state, val) {
+      state.userStats = val;
+    },
     updateHealth (state, delta) {
       state.health += delta;
-    }
+    },
   },
   actions: {
   },

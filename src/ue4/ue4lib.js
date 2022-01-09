@@ -122,7 +122,7 @@ const toUEInterface = (obj, prefix) => {
             out[i] = (val) => {
                 //call the declared method
                 tmp(val);
-                if (val.other && val.other[0])
+                if (val && val.other && val.other[0])
                     console.log(val.other[0]);
                 //commit the new value to the VueX store
                 store.commit(prefix + i, val);
