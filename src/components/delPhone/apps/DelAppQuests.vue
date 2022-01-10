@@ -4,14 +4,23 @@
             <div class="icon"><md-icon class="fa fa-map-marker-alt"></md-icon></div>
         </template>
         <template v-slot:app-main>
-            <div class="del-phone-app-quests"></div>
+            <div class="del-phone-app-quests">
+                <div>{{quests.length}}</div>
+            </div>
         </template>
     </del-phone-app>
 </template>
 <script>
 export default {
     name: 'del-app-quests',
-    computed: {}
+    computed: {
+        quests: {
+            get () {
+                console.log(this.$store.state.del.quests);
+                return this.$store.state.del.quests;
+            }
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

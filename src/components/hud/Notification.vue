@@ -5,9 +5,9 @@
                 tag="div"
                 :css="false"
                 :before-enter="beforeEnter"
-                :enter="afterEnter"
+                :enter="enter"
                 :leave="leave">
-            <div class="message" v-for="(msg, idx) in messages" :key="idx" :data-index="idx">
+            <div class="message" v-for="(msg, idx) in messages" :key="msg.name" :data-index="idx">
                 <h2 class="message-parent">{{msg.parent}}</h2>
                 <h3 class="message-name">{{msg.name}}</h3>
                 <h4 class="message-description">{{msg.description}}</h4>            
@@ -38,12 +38,16 @@ export default {
             fadeEnd: 1000
         }
     },
+    beforeEnter (el) {
+        el.style.opacity = 0;
+        el.style.height = 0;
+    },
     methods: {
-        enter (el) {
+        beforeEnter (el) {
             el.style.opacity = 0;
             el.style.height = 0;
         },
-        afterEnter (el, done) {
+        enter (el, done) {
             setTimeout(() => {
                 Velocity(
                     el,
