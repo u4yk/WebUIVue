@@ -2,7 +2,7 @@ import {toUEInterface} from './ue4lib';
 
 export default {
     ...toUEInterface({
-        addNotification: () => {},
+        addNotifications: () => {},
         setDisplayState: () => {},
         setIsReticleOn: () => {},
         setIsReticleFired: () => {},
