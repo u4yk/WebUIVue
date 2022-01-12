@@ -3,8 +3,11 @@
         <transition-group 
                 name="messages" 
                 tag="div"
+                enter-class="message-enter-active"
+                leave-active-class="message-leave-active"
+                :duration="{enter: 1000, leave: 1000}"
                 @after-enter="enter">
-            <div class="message" v-for="(msg, idx) in messages" :key="msg.name" :data-index="idx">
+            <div class="message" v-for="msg in messages" :key="msg.id" :data-index="msg.id">
                 <h3 class="message-parent submessage">{{msg.parent}}</h3>
                 <h4 class="message-name submessage">{{msg.name}}</h4>
                 <h6 class="message-description submessage">{{msg.description}}</h6>
@@ -13,8 +16,6 @@
     </div>
 </template>
 <script>
-import {cloneDeep} from 'lodash';
-import Velocity from 'velocity-animate';
 
 export default {
     name: 'notification',
@@ -22,29 +23,18 @@ export default {
         messages: {
             get () {
                 return this.$store.state.hud.notifications
-            },
-            // set (notifications) {
-                // this.$store.commit('hud/setNotifications', notifications);
-            // }
+            }
         }
     },
     data () {
         return {
-            fadeStart: 1000,
-            fadeComplete: 5000,
-            fadeEnd: 1000
+            fadeComplete: 5000
         }
-    },
-    beforeEnter (el) {
-        el.style.opacity = 0;
-        el.style.height = 0;
     },
     methods: {
         enter (el) {
             setTimeout(() => {
-                // console.log(this.$store.state.hud);
-                const messages = cloneDeep(this.$store.state.hud.notifications).splice(el.dataset.index, 1);
-                this.$store.commit('hud/setNotifications', messages);
+                this.$store.commit('hud/removeNotification', el.dataset.index);
             }, this.fadeComplete);
         }
     }
@@ -64,17 +54,14 @@ export default {
     border-radius: 25px;
     margin-bottom: 2vw;
     padding: 0.25vw 1vw;
-    transition: opacity 0.5s ease, height 0.25s ease;
+    opacity: 1;
+    transform: scale3d(1,1,1);
+    transition: opacity 1s ease, transform .5s ease;
 }
 
 .message-enter-active, .message-leave-active {
-    opacity: 1;
-    height: 4em;
-}
-
-.message-enter {
     opacity: 0;
-    height: 0;
+    transform: scale3d(1,0,1);
 }
 
 .submessage {

@@ -2,6 +2,9 @@ export default {
     addNotifications: (state, val) => {
         state.notifications = [...state.notifications,...val];
     },
+    removeNotification: (state, val) => {
+        state.notifications = state.notifications.filter(v => v.id !== val);
+    },
     setIsReticleOn: (state, val) => {
         state.isReticleOn = val;
     },
