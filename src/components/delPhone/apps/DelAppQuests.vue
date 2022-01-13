@@ -6,6 +6,7 @@
         <template v-slot:app-main>
             <div class="del-phone-app-quests">
                 <div>{{quests.length}}</div>
+                <div>{{current}}</div>
             </div>
         </template>
     </del-phone-app>
@@ -16,8 +17,12 @@ export default {
     computed: {
         quests: {
             get () {
-                console.log(this.$store.state.del.quests);
-                return this.$store.state.del.quests;
+                return this.$store.state.del.quests.allQuests;
+            }
+        },
+        current: {
+            get () {
+                return JSON.stringify(this.$store.state.del.quests);
             }
         }
     }

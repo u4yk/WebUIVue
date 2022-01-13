@@ -1,6 +1,14 @@
 export default {
     addNotifications: (state, val) => {
-        state.notifications = [...state.notifications,...val];
+        setTimeout(() => {
+            state.notifications = [...state.notifications,...val];
+    
+            val.forEach(v => {
+                setTimeout(() => {
+                    state.notifications = state.notifications.filter(n => n.id === val);
+                }, 6000);
+            });
+        }, 1000);
     },
     removeNotification: (state, val) => {
         state.notifications = state.notifications.filter(v => v.id !== val);
@@ -10,9 +18,6 @@ export default {
     },
     setIsReticleFired: (state, val) => {
         state.isReticleFired = val;
-    },
-    setNotifications: (state, val) => {
-        state.notifications = val;
     },
     setReticleStyle: (state, val) => {
         state.reticleStyle = val;

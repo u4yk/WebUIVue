@@ -3,8 +3,8 @@
         <transition-group 
                 name="messages" 
                 tag="div"
-                enter-class="message-enter-active"
-                leave-active-class="message-leave-active"
+                enter-class="message-enter"
+                leave-active-class="message-leave"
                 :duration="{enter: 1000, leave: 1000}"
                 @after-enter="enter">
             <div class="message" v-for="msg in messages" :key="msg.id" :data-index="msg.id">
@@ -22,6 +22,7 @@ export default {
     computed: {
         messages: {
             get () {
+                console.log(this.$store.state.hud.notifications.length);
                 return this.$store.state.hud.notifications
             }
         }
@@ -32,11 +33,11 @@ export default {
         }
     },
     methods: {
-        enter (el) {
-            setTimeout(() => {
-                this.$store.commit('hud/removeNotification', el.dataset.index);
-            }, this.fadeComplete);
-        }
+        // enter (el) {
+        //     setTimeout(() => {
+        //         this.$store.commit('hud/removeNotification', el.dataset.index);
+        //     }, 5000);
+        // }
     }
 }
 </script>
@@ -59,7 +60,7 @@ export default {
     transition: opacity 1s ease, transform .5s ease;
 }
 
-.message-enter-active, .message-leave-active {
+.message-enter, .message-leave {
     opacity: 0;
     transform: scale3d(1,0,1);
 }
