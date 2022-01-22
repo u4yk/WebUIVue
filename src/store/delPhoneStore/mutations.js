@@ -5,6 +5,11 @@ export default {
     setCurrentApp: (state, val) => {
         state.currentApp = val;
     },
+    setCurrentQuest: (state, val) => {
+        if (state.quests?.allQuests) {
+            state.quests.current = state.quests.allQuests.find(v => v.id === val) || {};
+        }
+    },
     setAppList: (state, val) => {
         state.appList = val;
     },

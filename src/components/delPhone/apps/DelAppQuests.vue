@@ -4,9 +4,19 @@
             <div class="icon"><md-icon class="fa fa-map-marker-alt"></md-icon></div>
         </template>
         <template v-slot:app-main>
-            <div class="del-phone-app-quests">
-                <div>{{quests.length}}</div>
-                <div>{{current}}</div>
+            <div class=" del-phone-app-quests">
+                <md-toolbar><h3>Quests</h3></md-toolbar>
+                <md-content class="md-scrollbar">
+                    <md-list class="parent" :md-expand-single="true">
+                        <md-list-item v-for="quest in quests" :key="quest.id" md-expand class="quest-item" :class="{current: id === current}">
+                            <span class="md-list-item-text"><b>{{quest.title}}</b></span>
+                                <md-list slot="md-expand">
+                                    <md-list-item class="md-inset" :style="getInnerStyle"><h3><b>{{quest.slugline}}</b></h3></md-list-item>
+                                    <md-list-item class="md-inset" :style="getInnerStyle">{{quest.description}}</md-list-item>
+                                </md-list>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
             </div>
         </template>
     </del-phone-app>
@@ -22,9 +32,12 @@ export default {
         },
         current: {
             get () {
-                return JSON.stringify(this.$store.state.del.quests);
+                return this.$store.state.del.quests.current?.id;
             }
-        }
+        },
+        getInnerStyle () {
+            return `margin-top: -16px; margin-left: -36px;`;
+        },
     }
 }
 </script>

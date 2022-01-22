@@ -18,13 +18,13 @@
                     <md-list class="parent" :md-expand-single="true">
                         <md-list-item v-for="(item, idx) in getPlayerInventory" :key="idx" md-expand class="inventory-item" :class="{equipped: item.isEquipped}">
                             <md-avatar class="md-avatar-icon md-primary">{{item.type.substr(0,1)}}</md-avatar>
-                            <span class="md-list-item-text">{{item.name}}</span>
+                            <span class="md-list-item-text"><b>{{item.name | uc}}</b></span>
                             <md-list slot="md-expand">
                                 <md-list-item class="md-inset in-use" v-if="item.isEquipped" :style="getInnerStyle">In Use</md-list-item>
                                 <md-list-item class="md-inset" :style="getInnerStyle">Quantity: {{item.qty}}</md-list-item>
                                 <!-- <md-list-item class="md-inset" v-if="isEquippable(item)" :style="getInnerStyle">Condition: {{item.cond/item.condMax*100}}%</md-list-item> -->
                                 <md-list-item class="md-inset" v-if="item.desc && item.desc.length > 0" :style="getInnerStyle">{{item.desc}}</md-list-item>
-                                <md-list-item class="md-inset" v-if="item.mods && item.mods.length > 0" :style="getInnerStyle">Mods</md-list-item>
+                                <md-list-item class="md-inset" v-if="item.mods && item.mods.length > 0" :style="getInnerStyle"><b><h3>Mods:</h3></b></md-list-item>
                                 <md-list-item class="md-inset" v-if="item.mods && item.mods.length > 0" :style="getInnerStyle">
                                     <ul>
                                         <li v-for="(mod, m) in item.mods" :key="m"><b>{{mod.name}}:</b> {{mod.description}}</li>
@@ -66,6 +66,11 @@ export default {
                 'Notes',
                 'Misc'
             ]
+        }
+    },
+    filters: {
+        uc (str) {
+            return str.match(/([A-Z]?[^A-Z]*)/g).map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`).slice(0,-1).join(" ");
         }
     },
     computed: {
