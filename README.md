@@ -1,3 +1,5 @@
+*Note: This is deprecated.  I recommend you move to [WebUIVue3](https://github.com/u4yk/WebUIVue3) since it's built for Unreal 5 and built with Vue 3.  As this is project was built for UE4 and on Vue 2, this won't be updated.  Also, mistakes were made with this repo, and the newer version has alleviated those issues. Thanks.*
+
 # WebUIVue
 UI framework for Unreal Engine 4 projects that uses Vue.js to work with [Tracer Interactive's](https://tracerinteractive.com) Web UI plugin (https://github.com/tracerinteractive/UnrealEngine).  It's pretty bare-bones at the moment, but there's enough functionality to get you up and going.
 
